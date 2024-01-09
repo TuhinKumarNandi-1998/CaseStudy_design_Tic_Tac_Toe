@@ -5,7 +5,7 @@ import Models.Move;
 
 public class MediumBotPlay implements BotPlayingStrategy {
     @Override
-    public void makeMove(Board board, Move move) {
-
+    public Move makeMove(Board board) {
+        return null;
     }
 }

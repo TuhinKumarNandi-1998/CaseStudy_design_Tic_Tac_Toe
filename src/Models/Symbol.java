@@ -1,17 +1,17 @@
 package Models;
 
 public class Symbol extends BaseModel {
-    private char symbol;
+    private char symbolChar;
 
-    public Symbol(char symbol) {
-        this.symbol = symbol;
+    public Symbol(char symbolChar) {
+        this.symbolChar = symbolChar;
     }
 
-    public char getSymbol() {
-        return symbol;
+    public char getSymbolChar() {
+        return symbolChar;
     }
 
-    public void setSymbol(char symbol) {
-        this.symbol = symbol;
+    public void setSymbolChar(char symbolChar) {
+        this.symbolChar = symbolChar;
     }
 }

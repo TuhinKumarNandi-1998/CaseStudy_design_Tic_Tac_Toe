@@ -18,6 +18,6 @@ public class GameService {
                 .setBoard(boardSize)
                 .setPlayers(players)
                 .setWinningStrategies(winningStrategies).build();
-        return null;
+        return game;
     }
 }

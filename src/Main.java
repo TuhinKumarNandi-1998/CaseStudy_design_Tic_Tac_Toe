@@ -40,6 +40,14 @@ public class Main {
 
         while(gameController.getGameStatus(game).equals(GameState.IN_PROGRESS)) {
             gameController.displayBoard(game);
+
+            System.out.println("Do you want to undo (y/n)");
+            String str = sc.next();
+
+            if(str.equalsIgnoreCase("y")){
+                gameController.undo(game);
+                continue;
+            }
             gameController.makeMove(game);
         }
 

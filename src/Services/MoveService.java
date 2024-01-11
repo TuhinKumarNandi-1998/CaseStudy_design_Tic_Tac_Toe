@@ -4,6 +4,8 @@ import Exceptions.InvalidMoveException;
 import Models.*;
 import Strategies.WinningStrategies.WinningStrategy;
 
+import java.util.List;
+
 public class MoveService {
 
     public void makeMove(Game game) throws InvalidMoveException {
@@ -26,7 +28,7 @@ public class MoveService {
         cellOfBoard.setCellState(CellState.FILLED);
         cellOfBoard.setPlayer(Currentplayer);
 
-        Move move1 = new Move(cellOfBoard);
+        Move move1 = new Move(cellOfBoard, Currentplayer);
         game.getMoves().add(move1);
 
         if(checkForWinner(game,move1)) {
@@ -64,5 +66,32 @@ public class MoveService {
             }
         }
         return false;
+    }
+
+    public void undo(Game game) {
+        List<Move> moveList = game.getMoves();
+
+        if(moveList.isEmpty()) {
+            return;
+        }
+
+        Move lastMove = moveList.get(moveList.size()-1);
+
+        moveList.remove(moveList.size()-1);
+
+        Cell cell = lastMove.getCell();
+        cell.setCellState(CellState.EMPTY);
+        cell.setPlayer(null);
+
+        List<WinningStrategy> winningStrategyList = game.getWinningStrategies();
+
+        for(WinningStrategy winningStrategy : winningStrategyList) {
+            winningStrategy.undo(game.getBoard(), lastMove);
+        }
+
+        int nextPlayerIndex = game.getNextPlayerIndex();
+        nextPlayerIndex -= 1;
+        nextPlayerIndex = (nextPlayerIndex + game.getPlayers().size())%game.getPlayers().size();
+        game.setNextPlayerIndex(nextPlayerIndex);
     }
 }

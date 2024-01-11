@@ -11,13 +11,14 @@ public class EasyBotPlay implements BotPlayingStrategy {
     @Override
     public Move makeMove(Board board) {
 
-        for(List<Cell> row : board.getBoardImage()) {
-            for(Cell cell : row) {
-                if(cell.getCellState().equals(CellState.EMPTY)) {
-                    return new Move(cell);
+        for (List<Cell> row : board.getBoardImage()) {
+            for (Cell cell : row) {
+                if (cell.getCellState().equals(CellState.EMPTY)) {
+                    return new Move(cell, null);
                 }
             }
         }
         return null;
     }
+
 }

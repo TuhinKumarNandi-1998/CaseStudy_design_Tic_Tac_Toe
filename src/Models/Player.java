@@ -21,7 +21,7 @@ public class Player extends BaseModel {
         int row = sc.nextInt();
         int col = sc.nextInt();
 
-        return new Move(new Cell(row, col));
+        return new Move(new Cell(row, col), this);
     }
 
     public String getName() {
